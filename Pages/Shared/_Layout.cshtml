@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Market</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <!-- Brand/logo -->
+        <a class="navbar-brand" href="#">
+            <img src="/Images/library.png" alt="logo" style="width:40px;">
+        </a>
+
+        <!-- Links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/Home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/ItemsPages/Index">Items</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/GroupsPages/Index">Groups</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="row myrow">
+        <div class="col-10 mydiv">
+            @RenderBody()
+        </div>
+        <div class="col-2 mydiv2">
+            <div class="list-group">
+                <a asp-page="/Home" class="list-group-item list-group-item-action">Home</a>
+                <a asp-page="/ItemsPages/Index" class="list-group-item list-group-item-action">Items</a>
+                <a asp-page="/GroupsPages/Index" class="list-group-item list-group-item-action">Groups</a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    @*<footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2020 - MarketPro - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            </div>
+        </footer>*@
+
+    <div class="footer">
+        &copy; 2020 - Market
+        @*<a asp-area="" asp-page="/Privacy">Privacy</a>*@
+    </div>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,78 @@
+﻿@page
+@model StoreMarket.Pages.ItemsPages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+    <h1>Index</h1>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <div class="container">
+        <br />
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <form class="card card-sm" method="post">
+                    <div class="card-body row no-gutters align-items-center">
+                        <!--end of col-->
+                        <div class="col">
+                            <input asp-for="SearchName" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search topics or keywords" >
+                        </div>
+                        <!--end of col-->
+                        <div class="col-auto">
+                            <button class="btn btn-lg btn-success" type="submit">Search</button>
+                        </div>
+                        <!--end of col-->
+                    </div>
+                </form>
+            </div>
+            <!--end of col-->
+        </div>
+    </div>
+    <p>
+        <a asp-page="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Item[0].ItemName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Item[0].ItemPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Item[0].ItemImage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Item[0].Groups)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Item)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ItemName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ItemPrice)
+                    </td>
+                    <td>
+                        <img src="/Images/@item.ItemImage" alt="Eagle" style="width:50px" />
+                        @*@Html.DisplayFor(modelItem => item.ItemImage)*@
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Groups.GroupName)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

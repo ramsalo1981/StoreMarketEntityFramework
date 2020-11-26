@@ -1,0 +1,63 @@
+﻿@page
+@model StoreMarket.Pages.ItemsPages.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="container">
+    <h1>Create</h1>
+
+    <h4>Item</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Item.ItemName" class="control-label"></label>
+                    <input asp-for="Item.ItemName" class="form-control" />
+                    <span asp-validation-for="Item.ItemName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Item.ItemPrice" class="control-label"></label>
+                    <input asp-for="Item.ItemPrice" class="form-control" />
+                    <span asp-validation-for="Item.ItemPrice" class="text-danger"></span>
+                </div>
+                <div class="form-group custom-file">
+                    <input type="file" class="custom-file-input" asp-for="RFile" />
+                    <label class="custom-file-label" asp-for="RFile" id="LImage">Select image</label>
+                    <span asp-validation-for="Item.ItemImage" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Item.GroupsId" class="control-label"></label>
+                    <select asp-for="Item.GroupsId" class="form-control" asp-items="ViewBag.GroupsId"></select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <img style="width:300px" id="NewImage" />
+    <script>
+        $('input[type=file]').change(function () {
+            var url = $(this).val();
+            $('#LImage').html(url.split("\\").pop());
+            var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+            if ((ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg")) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#NewImage').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+    </script>
+    <div>
+        <a asp-page="Index">Back to List</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</div>
